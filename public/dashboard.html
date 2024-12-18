@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dashboard-container {
+      background: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+    }
+    .status-section {
+      background-color: #666666;
+      padding: 20px;
+      border-radius: 5px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .status-section p {
+      margin: 10px 0;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .btn:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    .email-alert {
+      color: green;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 5px;
+      animation: none;
+      display: inline-block;
+    }
+    .history-section {
+      margin-top: 20px;
+    }
+    .history-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .history-section th, .history-section td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    .history-section th {
+      background-color: #eee;
+    }
+    .btn.blink {
+  background-color: red;
+    }
+    .blink {
+    animation: blink 1s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="status-section">
+      <p>Tình trạng di chuyển: <span id="movement">Đang cập nhật...</span></p>
+      <p>Gia tốc hiện tại: <span id="acceleration">0 m/s²</span></p>
+      <p>Khoảng cách đã di chuyển: <span id="distance">0 m</span></p>
+    </div>
+    <div class="controls">
+      <button class="btn" id="shutdown-button" disabled onclick="sendShutdownData()">Tắt máy xe</button>
+      <a href="bot.html" id="bot-link" class="btn">ChatBot</a>
+      <a href="history.html" id="history-link" class="btn">Lịch sử chuyển động</a>
+    </div>
+    <div class="history-section">
+      <h3>Lịch sử di chuyển</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Thời gian di chuyển</th>
+            <th>Tình trạng</th>
+            <th>Gia tốc</th>
+            <th>Khoảng cách</th>
+          </tr>
+        </thead>
+        <tbody id="history-table">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mqtt@4.2.2/dist/mqtt.min.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
