@@ -30,11 +30,11 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: ''// key OPENAI
 });
 
 // Kết nối đến MongoDB
-const mongoURI = "mongodb+srv://khavinhthuan114:DnUXhwyyGwFMWzWu@cluster0.evpwu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoURI = ""; //key mongo
 mongoose.connect(mongoURI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => {
